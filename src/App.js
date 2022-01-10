@@ -13,9 +13,11 @@ function App(props) {
       .then ((response) => response.json()) // fetch returns a promise which we transform response in json format
       .then((data) => {
         console.log('DATA', data);
-        // setData(data);
+        // setData (data) cannot be called without passing a argument to useEffect as it will run till infinite as it is re-rendered every time when there is change in state 
+        setData(data); 
       });
-  });
+  // }, [] ); if we want useEffect to run single time in initiation
+  },[userId] ); // Now it will only re-render when the userId is changed
 
   return (
     <div className='App' style= {{ paddingLeft: 20}}>
